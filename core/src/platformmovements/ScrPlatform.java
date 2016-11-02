@@ -11,30 +11,34 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import java.util.ArrayList;
 
 public class ScrPlatform implements Screen, InputProcessor {
 
     Game game;
     SpriteBatch batch;
-    Sprite sprBack, sprBack2;
+    Sprite sprBack;
+    sprEnem sprEnem;
     int nScreenWid = Gdx.graphics.getWidth(), nDinoHei, nScreenX;
     float fScreenWidth = Gdx.graphics.getWidth(), fScreenHei = Gdx.graphics.getHeight(), fDist, fVBackX;
     private float fVy;
     private float fVx;
     OrthographicCamera camBack;
+    ArrayList arnEnem;
 
     public ScrPlatform(Game _game) {
         game = _game;
         batch = new SpriteBatch();
         sprBack = new Sprite(new Texture(Gdx.files.internal("world.jpg")));
         sprBack.setSize(fScreenWidth, fScreenHei);
-        sprBack2 = new Sprite(new Texture(Gdx.files.internal("world.jpg")));
-        sprBack2.setSize(fScreenWidth, fScreenHei);
+        sprEnem = new sprEnem("Birdasaur.png", 100,100);
         Gdx.input.setInputProcessor((this));
         Gdx.graphics.setDisplayMode(800, 500, false);
         float aspectratio = (float) Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
         camBack = new OrthographicCamera(fScreenWidth * aspectratio, fScreenHei);
         camBack.position.set(fScreenWidth / 2, fScreenHei / 2, 0);
+        arnEnem = new ArrayList<sprEnem>();
+        arnEnem.add(sprEnem);
 
     }
 
